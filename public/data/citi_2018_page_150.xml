@@ -1,0 +1,38 @@
+<annotation>
+	<folder>label1</folder>
+	<filename>citi_2018_page_150.png</filename>
+	<path>/Volumes/GoogleDrive/Geteilte Ablagen/Projects/balance_reader/2_training_data/1_raw/predicted_labels/label1/citi_2018_page_150.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2700</width>
+		<height>3451</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>balance_sheet</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>243</xmin>
+			<ymin>421</ymin>
+			<xmax>2453</xmax>
+			<ymax>1647</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>balance_sheet</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>267</xmin>
+			<ymin>1907</ymin>
+			<xmax>2463</xmax>
+			<ymax>2610</ymax>
+		</bndbox>
+	</object>
+</annotation>

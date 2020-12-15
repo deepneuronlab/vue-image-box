@@ -1,0 +1,26 @@
+<annotation verified="yes">
+	<folder>label1</folder>
+	<filename>airbus_2018_page_203.png</filename>
+	<path>/Volumes/GoogleDrive/Geteilte Ablagen/Projects/balance_reader/2_training_data/1_raw/predicted_labels/label1/airbus_2018_page_203.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2552</width>
+		<height>3308</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>comprehensive_income</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>245</xmin>
+			<ymin>539</ymin>
+			<xmax>2288</xmax>
+			<ymax>1687</ymax>
+		</bndbox>
+	</object>
+</annotation>

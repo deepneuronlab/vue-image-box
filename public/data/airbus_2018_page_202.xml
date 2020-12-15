@@ -1,0 +1,26 @@
+<annotation verified="yes">
+	<folder>label1</folder>
+	<filename>airbus_2018_page_202.png</filename>
+	<path>/Volumes/GoogleDrive/Geteilte Ablagen/Projects/balance_reader/2_training_data/1_raw/predicted_labels/label1/airbus_2018_page_202.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>2552</width>
+		<height>3308</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>income_statement</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>245</xmin>
+			<ymin>526</ymin>
+			<xmax>2305</xmax>
+			<ymax>2061</ymax>
+		</bndbox>
+	</object>
+</annotation>

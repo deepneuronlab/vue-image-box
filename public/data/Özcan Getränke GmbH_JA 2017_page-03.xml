@@ -1,0 +1,38 @@
+<annotation>
+	<folder>transformed</folder>
+	<filename>Özcan Getränke GmbH_JA 2017_page-03.png</filename>
+	<path>/Volumes/GoogleDrive/Geteilte Ablagen/Projects/balance_reader/2_training_data/1_raw/kt_png/tilted/corrected/transformed/Özcan Getränke GmbH_JA 2017_page-03.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>3509</width>
+		<height>2484</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Aktiva</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>164</xmin>
+			<ymin>371</ymin>
+			<xmax>1731</xmax>
+			<ymax>1552</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Passiva</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1751</xmin>
+			<ymin>364</ymin>
+			<xmax>3344</xmax>
+			<ymax>1572</ymax>
+		</bndbox>
+	</object>
+</annotation>
