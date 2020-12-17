@@ -1,27 +1,28 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-// ROUTES 
-import PdfPage from '@/pages/PdfPage'
+// // ROUTES
+// import pageEditor from "@/components/page-editor";
+import Home from "@/pages/home";
+import PageViewer from "@/pages/PageViewer";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 let router = new VueRouter({
-    // mode: 'history',
-    routes: [
-        {   
-            meta: {title: 'PDF page'},
-            path: '/pdf-page/:PageId',
-            name: 'PdfPage',
-            props: true,
-            component: PdfPage
-        },
-    ]
-})
+  mode: "history",
+  routes: [
+    { path: "", component: Home },
+    {
+      meta: { title: "PDF page" },
+      path: "/page-viewer",
+      name: "pageViewer",
+      props: true,
+      component: PageViewer,
+      beforeEnter: (to, from, next) => {
+        (document.title = "Page Viewer"), next();
+      },
+    },
+  ],
+});
 
-router.beforeEach((to, from, next) => {
-  document.title = to.params.PageId,
-  next()
-})
-
-export default router
+export default router;
