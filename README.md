@@ -5,7 +5,7 @@ In the `PdfPage.vue` file, the `XML` file is parsed.
 
 
 ## Challenge:
-- Add an editable `label` for pink each area.
+- Add an editable `label` for each pink area.
 
 ## Extra Points:
 - Make the pink areas don't overflow the page.
