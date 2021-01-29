@@ -10,8 +10,6 @@
             v-on:resizing="(r) => resize(table, r)" 
             v-on:dragging="(r) => resize(table, r)"
         >
-            <!-- <p>{{ table.x }} х {{ table.y }} </p> -->
-            <!-- <p>{{ table.w }} х {{ table.h }}</p> -->
         </VueDragResize>
 		<img class="page-img" :src="`data/${PageId}.png`" alt="">
 	</div>
@@ -50,13 +48,16 @@ export default {
             tables: [],
         }
     },
+    mounted(){
+        },
     methods: {
         resize(table, newRect) {
             table.w = newRect.width
             table.h = newRect.height
             table.y = newRect.top
             table.x = newRect.left
-            sessionStorage.setItem(this.PageId, JSON.stringify(this.tables))
+            // sessionStorage.setItem(this.PageId, JSON.stringify(this.tables))
+            this.$store.dispatch('addItem', JSON.stringify(this.tables))
         },
         getData() {
             let savedData = sessionStorage.getItem(this.PageId)
@@ -66,6 +67,7 @@ export default {
             }
             fetch(`data/${this.PageId}.xml`).then(res => res.text())
             .then(xml => {
+                console.log(xml)
                 var parseString = require('xml2js').parseString;
                 parseString(xml, (err, result) => {
                     this.tables = result.annotation.object.map((i, k) => {
@@ -78,7 +80,8 @@ export default {
                         }
                     })
                 })
-                sessionStorage.setItem(this.PageId, JSON.stringify(this.tables))
+                this.$store.dispatch('addItem', JSON.stringify(this.tables))
+                // sessionStorage.setItem(this.PageId, JSON.stringify(this.tables))
             })
         }
     }

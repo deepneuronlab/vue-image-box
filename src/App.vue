@@ -9,10 +9,8 @@
 			>
 				{{link}}
 			</router-link>
-		</div>
-		
+		</div>		
 		<router-view class="container"/>
-		<br><br><br><br>
 	</div>
 </template>
 
@@ -39,12 +37,10 @@
 
 <script>
 export default {
-	components: {
-	},
 	data() {
 		return {
 			links: [
-                '_final US_238180_Bericht_3665_VENSYS Energy AG_2017_page-21',
+        '_final US_238180_Bericht_3665_VENSYS Energy AG_2017_page-21',
 				'aareal_bank_2018_page_134',
 				'aareal_bank_2018_page_135',
 				'airbus_2018_page_202',
@@ -53,11 +49,9 @@ export default {
 				'citi_2018_page_151',
 				'Elektronisches Exemplar_KAP_PPH_2018_page-24',
 				'JA_18_Nordevent_3_page-1',
-				'Özcan Getränke GmbH_JA 2017_page-03',
+				'Özcan Getränke GmbH_JA 2017_page-03'
             ]
 		}
-	},
-	beforeCreate() {
 	},
 	created() {
 		let deferredPrompt;
@@ -66,8 +60,6 @@ export default {
 			deferredPrompt = e;
 			console.log(deferredPrompt);
 		});
-	},
-	methods: {
 	}
 }
 </script>
