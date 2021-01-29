@@ -6,9 +6,11 @@ In the `data` folder, there are `PNG images`, each images has an `XML` file asso
 In the `PdfPage.vue` file, the `XML` file is parsed.
 
 
-## ToDo:
+## Challenge:
 - Add an editable `label` for each area.
 - Improve the strcucture and data flow.
+
+## Treat this as production code. Make a PR and treat errors gracefully.
 
 
 ### To run locally
