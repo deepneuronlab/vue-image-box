@@ -1,0 +1,38 @@
+<annotation verified="yes">
+	<folder>Hypoport</folder>
+	<filename>_final US_238180_Bericht_3665_VENSYS Energy AG_2017_page-21.png</filename>
+	<path>/Volumes/GoogleDrive/Geteilte Ablagen/Projects/balance_reader/2_training_data/1_raw/hypoport_png/Hypoport/_final US_238180_Bericht_3665_VENSYS Energy AG_2017_page-21.png</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>4961</width>
+		<height>3508</height>
+		<depth>1</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>Aktiva</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>205</xmin>
+			<ymin>357</ymin>
+			<xmax>2549</xmax>
+			<ymax>3225</ymax>
+		</bndbox>
+	</object>
+	<object>
+		<name>Passiva</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>2555</xmin>
+			<ymin>350</ymin>
+			<xmax>4780</xmax>
+			<ymax>3244</ymax>
+		</bndbox>
+	</object>
+</annotation>

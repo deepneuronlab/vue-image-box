@@ -9,7 +9,6 @@ In the `PdfPage.vue` file, the `XML` file is parsed.
 ## ToDo:
 - Add an editable `label` for each area.
 - Improve the strcucture and data flow.
-## Make PR! Don't push to master.
 
 
 ### To run locally

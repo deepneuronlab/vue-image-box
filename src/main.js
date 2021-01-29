@@ -1,23 +1,14 @@
-import "bulma";
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import axios from "axios";
-import store from "../store";
+import 'bulma'
+import Vue from 'vue'
+import App from './App.vue'
+import router from './router'
+import VueDragResize from 'vue-drag-resize'
 
-axios.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  function(error) {
-    return Promise.reject(error);
-  }
-);
 
-Vue.prototype.$http = axios;
+Vue.component('vue-drag-resize', VueDragResize)
+
 
 new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+    router,
+    render: h => h(App)
+}).$mount('#app')
