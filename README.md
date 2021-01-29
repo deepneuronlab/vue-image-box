@@ -1,6 +1,4 @@
-# Draws an area on top of an Image
-
-This project uses Vue.js and Vue-Router.
+# DNL Front-End Challenge
 
 In the `data` folder, there are `PNG images`, each images has an `XML` file associated with it. 
 In the `PdfPage.vue` file, the `XML` file is parsed.
@@ -8,6 +6,8 @@ In the `PdfPage.vue` file, the `XML` file is parsed.
 
 ## Challenge:
 - Add an editable `label` for each area.
+
+## Extra Points:
 - Improve the strcucture and data flow.
 - Treat this as production code. Make a PR and treat errors gracefully.
 
