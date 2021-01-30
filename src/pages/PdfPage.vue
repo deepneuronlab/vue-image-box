@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="pdfPage">
+        <div>
+            <button>Add Label</button>
+        </div>
         <VueDragResize v-for="table in tables" :key="table.key"
             :isActive="false" 
             :w="table.w" 
@@ -9,31 +12,20 @@
             contentClass="box-shaddow"
             v-on:resizing="(r) => resize(table, r)" 
             v-on:dragging="(r) => resize(table, r)"
-        >
-        </VueDragResize>
-		<img class="page-img" :src="`data/${PageId}.png`" alt="">
+        />
+		<img class="page-img" :src="`data/${PageId}.png`" :alt="PageId">
 	</div>
 </template>
-
-<style scoped>
-    .box-shaddow {
-        background: rgb(100, 0, 100, 0.3);
-    }
-    .page-img {
-        border: 1px solid #c3c3c3;
-    }
-</style>
-
 
 <script>
 import VueDragResize from 'vue-drag-resize';
 
 export default {
-	components: {
+    components: {
         VueDragResize
 	},
 	props: {
-		PageId: {type: String, default: null},
+        PageId: {type: String, default: null},
     },
     created() {
         this.getData()
@@ -48,8 +40,6 @@ export default {
             tables: [],
         }
     },
-    mounted(){
-        },
     methods: {
         resize(table, newRect) {
             table.w = newRect.width
@@ -67,7 +57,6 @@ export default {
             }
             fetch(`data/${this.PageId}.xml`).then(res => res.text())
             .then(xml => {
-                console.log(xml)
                 var parseString = require('xml2js').parseString;
                 parseString(xml, (err, result) => {
                     this.tables = result.annotation.object.map((i, k) => {
@@ -87,3 +76,15 @@ export default {
     }
 }
 </script>
+
+<style scoped lang="sass">
+.pdfPage
+    position: relative
+    margin: 5rem 0 0 0 
+
+.box-shaddow 
+  background-color: rgba(100, 0, 100, 0.3)
+
+.page-img 
+  border: 1px solid #c3c3c3
+</style>

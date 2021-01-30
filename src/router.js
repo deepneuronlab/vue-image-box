@@ -9,8 +9,8 @@ Vue.use(VueRouter)
 let router = new VueRouter({
     // mode: 'history',
     routes: [
-        {   
-            meta: {title: 'PDF page'},
+        {
+            meta: { title: 'PDF page' },
             path: '/pdf-page/:PageId',
             name: 'PdfPage',
             props: true,
@@ -20,8 +20,8 @@ let router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.params.PageId,
-  next()
+    document.title = to.params.PageId,
+        next()
 })
 
 export default router
