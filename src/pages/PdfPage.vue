@@ -9,7 +9,7 @@
         )
             p.subtitle Please enter your label in both languages
         div(class="pdfPage__options is-flex")
-            select(name="labels" id="labels" v-model="labelValue" class="select is-info")
+            select(name="labels" id="labels" :disabled="existingCovers.length>5" v-model="labelValue" class="select is-info")
                 option(value="" selected disabled hidden) Select Label
                 option(v-for="label in labels" :key='label.id' :value="label[selectedUserLanguage]") {{label[selectedUserLanguage]}}
                 option(value="costum") Costum...

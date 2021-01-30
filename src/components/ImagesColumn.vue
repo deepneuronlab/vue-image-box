@@ -7,7 +7,7 @@ div(class="pages is-flex")
     :class="{'is-active' : link == $route}"
     class="pages__link is-flex"
     )
-      p {{link}}
+      p {{link.slice(0,20)}}
       img(class="pages__foto" :src="`data/${link}.png`" :alt="link")
 </template>
 
@@ -36,7 +36,7 @@ export default {
 .pages
   overflow-x: scroll
   overflow-y: hidden
-  height: 4rem
+  height: 5rem
   transition: height .5s ease
 
   &:hover
@@ -50,6 +50,7 @@ export default {
     flex-direction: column
     align-items: center
     border-radius: .3rem
+    width: 20rem
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
     &:hover
