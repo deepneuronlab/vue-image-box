@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import VuexPersist from 'vuex-persist';
 
 const vuexLocalStorage = new VuexPersist({
-  key: 'covers',
+  key: 'imagebox',
   storage: window.sessionStorage,
 })
 
@@ -11,22 +11,66 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    items: [],
+    images: [],
+    userLanguages: ['en', 'de'],
+    selectedUserLanguage: 'de',
+    labels: []
   },
+
   mutations: {
-    ADD(state, val) {
-      state.items.push(val)
+    ADD_BOX_COVER(state, payload) {
+      const image = state.images.filter(item => item.id === payload.id)
+      if (image[0]) {
+        const index = state.images.indexOf(image[0])
+        state.images[index].covers.push({
+          key: `${payload.label}${state.images[index].covers.length + 1}`,
+          label: payload.label,
+          x: 15,
+          y: 15,
+          w: 250,
+          h: 250
+        })
+      } else {
+        state.images.push(payload)
+      }
+    },
+    MODIFY_BOX_COVER(state, payload) {
+      const image = state.images.filter(item => item.id === payload.id)[0]
+      let cover = image.covers.filter(item => item.key === payload.cover.key)[0]
+      Object.assign(cover, payload.cover)
+    },
+    REMOVE_BOX_COVER(state, payload) {
+      const image = state.images.filter(item => item.id === payload.id)[0]
+      let cover = image.covers.filter(item => item.key === payload.coverKey)[0]
+      const index = image.covers.indexOf(cover)
+      image.covers.splice(index, 1)
+    },
+    SET_USER_LANGUGE(state, language) {
+      state.selectedUserLanguage = language
+    },
+    ADD_LABELS(state, labels) {
+      state.labels = [...labels]
     }
-
   },
+
   actions: {
-    addItem({ commit }, val) {
-      commit('ADD', val)
+    addBoxCover({ commit }, item) {
+      commit('ADD_BOX_COVER', item)
+    },
+    modifyBoxCover({ commit }, payload) {
+      commit('MODIFY_BOX_COVER', payload)
+    },
+    removeBoxCover({ commit }, item) {
+      commit('REMOVE_BOX_COVER', item)
+    },
+    addLabels({ commit }, labels) {
+      commit('ADD_LABELS', labels)
+    },
+    setUserLanguage({ commit }, language) {
+      commit('SET_USER_LANGUGE', language)
     }
   },
-  getters: {
 
-  },
   plugins: [vuexLocalStorage.plugin]
 });
 

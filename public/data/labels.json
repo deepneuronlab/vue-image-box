@@ -1,0 +1,11 @@
+{
+	"labels": [
+		{ "id": "label1", "en": "Label1 (EN)", "de": "Label1 (DE)" },
+		{ "id": "label2", "en": "Label2 (EN)", "de": "Label2 (DE)" },
+		{ "id": "label3", "en": "Label3 (EN)", "de": "Label3 (DE)" },
+		{ "id": "label4", "en": "Label4 (EN)", "de": "Label4 (DE)" },
+		{ "id": "label5", "en": "Label5 (EN)", "de": "Label5 (DE)" },
+		{ "id": "label6", "en": "Label6 (EN)", "de": "Label6 (DE)" },
+		{ "id": "label7", "en": "Label7 (EN)", "de": "Label7 (DE)" }
+	]
+}

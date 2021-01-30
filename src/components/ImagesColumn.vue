@@ -1,15 +1,14 @@
-<template>
-  <div class="pages is-flex">
-			<router-link v-for="link in links"
-				:to="{name: 'PdfPage', params: {PageId: link}}"
-				:key="link"
-				:class="{'is-active' : link == $route}"
-				class="pages__link is-flex"
-			>
-				<p> {{link}} </p>
-        <img class="pages__foto" :src="`data/${link}.png`" :alt="PageId">
-			</router-link>
-		</div>
+<template lang="pug">
+div(class="pages is-flex")
+  router-link(
+    v-for="link in links"
+    :to="{name: 'PdfPage', params: {PageId: link}}"
+    :key="link"
+    :class="{'is-active' : link == $route}"
+    class="pages__link is-flex"
+    )
+      p {{link}}
+      img(class="pages__foto" :src="`data/${link}.png`" :alt="link")
 </template>
 
 <script>
@@ -25,47 +24,54 @@ export default {
 				'citi_2018_page_150',
 				'citi_2018_page_151',
 				'Elektronisches Exemplar_KAP_PPH_2018_page-24',
-				'JA_18_Nordevent_3_page-1',
-				'Özcan Getränke GmbH_JA 2017_page-03'
-            ]
+				'JA_18_Nordevent_3_page-1'
+      ]
 		}
 	}
 }
 </script>
 
 <style lang="sass" scoped>
+
 .pages
-  flex-direction: column
-  border-right: 1px solid #c3c3c3
-  overflow-y: scroll
-  height: 100vh
-  position: fixed
+  overflow-x: scroll
+  overflow-y: hidden
+  height: 4rem
+  transition: height .5s ease
+
+  &:hover
+    transition: height .5s ease
+    height: 20rem
 
   &__link
-    padding: 1rem
+    padding: .5rem
     border: 1px solid #c3c3c3
-    margin: 1rem
+    margin: 1rem .5rem
     flex-direction: column
     align-items: center
     border-radius: .3rem
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
+    &:hover
+      background-color: #c3c3c3
+
   &::-webkit-scrollbar
-    width: .25rem
-    height: .25rem
+    width: .5rem
+    height: .5rem
 
   &::-webkit-scrollbar-track
     border-radius: 1px
 
   &::-webkit-scrollbar-thumb
-    background: red
+    background: rgba(100, 0, 100, 0.3)
     border-radius: 0px
 
   &::-webkit-scrollbar-thumb:hover
     background: #b30000
 
   &__foto
-    width: 10rem
+    overflow-y: hidden
+    width: 100%
 
 .router-link-active
   background: #e7e7e7

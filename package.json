@@ -34,6 +34,8 @@
 		"node-sass": "^4.12.0",
 		"prettier": "^1.18.2",
 		"sass-loader": "^7.3.1",
+		"pug": "3.0.0",
+		"pug-plain-loader": "^1.1.0",
 		"vue-eslint-parser": "^7.0.0",
 		"vue-template-compiler": "^2.6.10",
 		"webpack-bundle-analyzer": "^3.6.0"
@@ -43,10 +45,7 @@
 		"env": {
 			"node": true
 		},
-		"extends": [
-			"plugin:vue/essential",
-			"eslint:recommended"
-		],
+		"extends": [ "plugin:vue/essential", "eslint:recommended" ],
 		"rules": {},
 		"parserOptions": {
 			"parser": "babel-eslint"
@@ -57,9 +56,5 @@
 			"autoprefixer": {}
 		}
 	},
-	"browserslist": [
-		"> 1%",
-		"last 2 versions",
-		"not ie <= 8"
-	]
+	"browserslist": [ "> 1%", "last 2 versions", "not ie <= 8" ]
 }
