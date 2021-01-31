@@ -7,8 +7,7 @@ div(class="pages is-flex")
     :class="{'is-active' : link == $route}"
     class="pages__link is-flex"
     )
-      p {{link.slice(0,20)}}
-      img(class="pages__foto" :src="`data/${link}.png`" :alt="link")
+      p {{link}}
 </template>
 
 <script>
@@ -38,12 +37,7 @@ export default {
 .pages
   overflow-x: scroll
   overflow-y: hidden
-  height: 5rem
-  transition: height .25s ease
-
-  &:hover
-    transition: height .25s ease
-    height: 20rem
+  height: fit-content
 
   &__link
     padding: .5rem
@@ -52,15 +46,15 @@ export default {
     flex-direction: column
     align-items: center
     border-radius: .3rem
-    white-space: nowrap
+    text-align: center
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
     &:hover
       background-color: #c3c3c3
 
   &::-webkit-scrollbar
-    width: .6rem
-    height: .6rem
+    width: .4rem
+    height: .4rem
 
   &::-webkit-scrollbar-track
     border-radius: 1px
