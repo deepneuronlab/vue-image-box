@@ -5,10 +5,10 @@
   .dialog-modal__content
     h1.title {{ title }}
     slot
-    p.has-text-danger {{error}}
+    p.has-text-danger(v-if="error") {{error}}
     span.dialog-modal__content-footer
-      input(v-model="labelEnglish" placeholder="Label in english")
-      input(v-model="labelGerman" placeholder="Label in German")
+      input(v-model="labelEnglish" type="text" maxlength="40" placeholder="Label in english")
+      input(v-model="labelGerman" type="text" maxlength="40" placeholder="Label in German")
       .columns
         .column
           button(
@@ -54,6 +54,9 @@ export default {
   watch: {
     dialogVisibleSync(value) {
       this.isDialogVisible = value
+      this.labelEnglish = ''
+      this.labelGerman = ''
+      this.error = ''
     }
   },
 
@@ -103,6 +106,7 @@ export default {
     background-color: white
 
     &-footer
-      bottom: 0
+      & > *
+        margin-bottom: 1rem
 
 </style>
