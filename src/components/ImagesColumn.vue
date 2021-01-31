@@ -39,10 +39,10 @@ export default {
   overflow-x: scroll
   overflow-y: hidden
   height: 5rem
-  transition: height .5s ease
+  transition: height .25s ease
 
   &:hover
-    transition: height .5s ease
+    transition: height .25s ease
     height: 20rem
 
   &__link
@@ -52,14 +52,15 @@ export default {
     flex-direction: column
     align-items: center
     border-radius: .3rem
+    white-space: nowrap
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
     &:hover
       background-color: #c3c3c3
 
   &::-webkit-scrollbar
-    width: 1rem
-    height: 1rem
+    width: .6rem
+    height: .6rem
 
   &::-webkit-scrollbar-track
     border-radius: 1px

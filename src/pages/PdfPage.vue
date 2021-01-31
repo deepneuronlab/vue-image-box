@@ -18,13 +18,15 @@
             div(class="pdfPage__labels is-flex" v-for="(cover, index) in existingCovers" :style="{backgroundColor: colors[index]}" :key="cover.key") 
                 span(class="pdfPage__labels-close" @click="removeCover(cover.key)") X
                 p {{cover.label}}
-        div(class="pdfPage__cover conrainer")
+        div(class="pdfPage__cover conrainer" ref="parent")
             VueDragResize(
                 v-for="(table, index) in existingCovers" :key="`${table.key}-${index}`"
                 :w="table.w" 
                 :h="table.h" 
                 :x="table.x"
                 :y="table.y"
+                :parentW="parentWidth"
+                :parentH="parentHeight"
                 :parentLimitation="true"
                 :data-label="table.label"
                 :style="{backgroundColor: colors[index]}"
@@ -51,7 +53,9 @@ export default {
     data(){
         return{
             createLabelModalVisible: false,
-            labelValue: ''
+            labelValue: '',
+            parentHeight: 0,
+            parentWidth: 0
         }
     },
     created() {
@@ -74,6 +78,18 @@ export default {
                 this.labelValue = ''
             }
         }
+    },
+    mounted(){
+        setTimeout(()=>{
+            this.parentHeight = this.$refs.parent.clientHeight
+            this.parentWidth = this.$refs.parent.clientWidth
+        },100)
+    },
+    updated(){
+        setTimeout(()=>{
+            this.parentHeight = this.$refs.parent.clientHeight
+            this.parentWidth = this.$refs.parent.clientWidth
+        },100)
     },
     mixins: [commonData, commonMethods],
     methods: {
@@ -134,8 +150,11 @@ export default {
 
     &__options
         align-items: center
-        height: 2rem
+        height: 4rem
         margin-bottom: 1rem
+        border: 1px solid grey
+        background-color: #fcf2f2
+        border-radius: .2rem
 
         & > *
             margin-left: 1rem
@@ -153,7 +172,7 @@ export default {
     &__cover
         position: relative
 
-        &-shaddow 
+        &-shaddow
             &::before
                 font-size: 2rem
                 color: green
