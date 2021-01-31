@@ -172,6 +172,7 @@ export default {
 
     &__cover
         position: relative
+        min-width: 1334px
 
         &-shaddow
             &::before
