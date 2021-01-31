@@ -5,6 +5,7 @@
   .dialog-modal__content
     h1.title {{ title }}
     slot
+    p.has-text-danger {{error}}
     span.dialog-modal__content-footer
       input(v-model="labelEnglish" placeholder="Label in english")
       input(v-model="labelGerman" placeholder="Label in German")
@@ -15,7 +16,7 @@
           ) {{secondaryButtonLabel}}
         .column
           button(
-            @click="$emit('primaryButtonClicked')"
+            @click="saveLabel"
           ) {{primaryButtonLabel}}
 </template>
 
@@ -45,7 +46,8 @@ export default {
     return {
       isDialogVisible: false,
       labelEnglish: "",
-      labelGerman: ""
+      labelGerman: "",
+      error: ''
     }
   },
 
@@ -57,6 +59,23 @@ export default {
 
   mounted() {
     this.isDialogVisible = this.dialogVisibleSync
+  },
+
+  methods: {
+    saveLabel(){
+      if(this.labelEnglish && this.labelGerman){
+        this.$store.dispatch('addLabel', {
+          en: this.labelEnglish,
+          de: this.labelGerman
+        })
+        this.labelEnglish = ""
+        this.labelGerman = ""
+        this.error = ""
+        this.$emit('secondaryButtonClicked')
+      } else {
+        this.error = 'Please fill both labels'
+      }
+    }
   }
 }
 </script>

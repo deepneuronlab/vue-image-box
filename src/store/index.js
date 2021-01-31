@@ -48,8 +48,12 @@ const store = new Vuex.Store({
     SET_USER_LANGUGE(state, language) {
       state.selectedUserLanguage = language
     },
-    ADD_LABELS(state, labels) {
-      state.labels = [...labels]
+    ADD_LABELS(state, payload) {
+      const label = {
+        id: `label${state.labels.length + 1}`,
+        ...payload
+      }
+      state.labels.push(label)
     }
   },
 
@@ -63,8 +67,9 @@ const store = new Vuex.Store({
     removeBoxCover({ commit }, item) {
       commit('REMOVE_BOX_COVER', item)
     },
-    addLabels({ commit }, labels) {
-      commit('ADD_LABELS', labels)
+    addLabel({ commit }, label) {
+      console.log(label)
+      commit('ADD_LABELS', label)
     },
     setUserLanguage({ commit }, language) {
       commit('SET_USER_LANGUGE', language)
