@@ -23,7 +23,7 @@ const store = new Vuex.Store({
       if (image[0]) {
         const index = state.images.indexOf(image[0])
         state.images[index].covers.push({
-          key: `${payload.label}${state.images[index].covers.length + 1}`,
+          key: `${payload.label}${state.images[index].covers.length + 1}${new Date().getTime()}`,
           label: payload.label,
           x: 15,
           y: 15,
