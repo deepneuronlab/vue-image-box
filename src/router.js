@@ -7,7 +7,6 @@ import PdfPage from '@/pages/PdfPage'
 Vue.use(VueRouter)
 
 let router = new VueRouter({
-    // mode: 'history',
     routes: [
         {
             meta: { title: 'PDF page' },
@@ -19,8 +18,8 @@ let router = new VueRouter({
     ]
 })
 
-router.beforeEach((to, from, next) => {
-    document.title = to.params.PageId,
+router.beforeEach((to, _, next) => {
+    document.title = to.params.PageId || 'Home',
         next()
 })
 
