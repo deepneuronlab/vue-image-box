@@ -1,3 +1,5 @@
+import { colors } from '@/lib/constants'
+
 const commonData = {
   computed: {
     labels() {
@@ -17,6 +19,9 @@ const commonData = {
     existingImage() {
       const image = this.$store.state.images.filter(item => item.id === this.PageId)
       return image.length
+    },
+    colors() {
+      return colors
     }
   }
 }

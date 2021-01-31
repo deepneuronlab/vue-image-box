@@ -18,9 +18,11 @@ export default {
 			links: [
         '_final US_238180_Bericht_3665_VENSYS Energy AG_2017_page-21',
 				'aareal_bank_2018_page_134',
+				'citi_2018_page_151_copy',
 				'aareal_bank_2018_page_135',
 				'airbus_2018_page_202',
 				'airbus_2018_page_203',
+				'aareal_bank_2018_page_134_copy',
 				'citi_2018_page_150',
 				'citi_2018_page_151',
 				'Elektronisches Exemplar_KAP_PPH_2018_page-24',
@@ -50,15 +52,14 @@ export default {
     flex-direction: column
     align-items: center
     border-radius: .3rem
-    width: 20rem
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
 
     &:hover
       background-color: #c3c3c3
 
   &::-webkit-scrollbar
-    width: .5rem
-    height: .5rem
+    width: 1rem
+    height: 1rem
 
   &::-webkit-scrollbar-track
     border-radius: 1px
@@ -72,7 +73,7 @@ export default {
 
   &__foto
     overflow-y: hidden
-    width: 100%
+    width: 100rem
 
 .router-link-active
   background: #e7e7e7

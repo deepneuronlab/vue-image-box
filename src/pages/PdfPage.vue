@@ -15,7 +15,7 @@
                 option(value="costum") Costum...
             select(name="userLanguage" id="userLanguage" @change="setLanguage" class="select is-info")
                 option(v-for="language in userLanguages" :selected="language=== selectedUserLanguage " :key='language' :value="language") {{language}}
-            div(class="pdfPage__labels is-flex" v-for="cover in existingCovers" :key="cover.key") 
+            div(class="pdfPage__labels is-flex" v-for="(cover, index) in existingCovers" :style="{backgroundColor: colors[index]}" :key="cover.key") 
                 span(class="pdfPage__labels-close" @click="removeCover(cover.key)") X
                 p {{cover.label}}
         div(class="pdfPage__cover conrainer")
@@ -27,6 +27,7 @@
                 :y="table.y"
                 :parentLimitation="true"
                 :data-label="table.label"
+                :style="{backgroundColor: colors[index]}"
                 contentClass="pdfPage__cover-shaddow"
                 @resizestop="(r) => resize(table, r)" 
                 @dragstop="(r) => resize(table, r)"
@@ -143,7 +144,6 @@ export default {
         border: 1px solid black
         padding: 0 .5rem
         border-radius: .5rem
-        background-color: rgba(100, 0, 100, 0.3)
 
         &-close
             margin: 0 .5rem 0 0
@@ -154,8 +154,6 @@ export default {
         position: relative
 
         &-shaddow 
-            background-color: rgba(100, 0, 100, 0.3)
-
             &::before
                 font-size: 2rem
                 color: green
