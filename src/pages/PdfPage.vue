@@ -28,13 +28,15 @@
                 :parentW="parentWidth"
                 :parentH="parentHeight"
                 :parentLimitation="true"
+                :aspectRatio="true"
+                :stickSize="10"
                 :data-label="table.label"
                 :style="{backgroundColor: colors[index]}"
                 contentClass="pdfPage__cover-shaddow"
                 @resizestop="(r) => resize(table, r)" 
                 @dragstop="(r) => resize(table, r)"
             )
-            img(class="page-img" :src="`data/${PageId}.png`" :alt="PageId")
+            img(class="pdfPage__img" :src="`data/${PageId}.png`" :alt="PageId")
 </template>
 
 <script>
@@ -183,6 +185,6 @@ export default {
                 align-items: center
                 content: attr(data-label)
 
-.page-img 
-    border: 1px solid #c3c3c3
+    &__img 
+        border: 1px solid #c3c3c3
 </style>

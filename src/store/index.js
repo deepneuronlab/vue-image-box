@@ -71,7 +71,6 @@ const store = new Vuex.Store({
       commit('REMOVE_BOX_COVER', item)
     },
     addLabels({ commit }, labels) {
-      console.log(labels)
       commit('ADD_LABELS', labels)
     },
     addLabel({ commit }, label) {
