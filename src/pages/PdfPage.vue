@@ -28,7 +28,6 @@
                 :parentW="parentWidth"
                 :parentH="parentHeight"
                 :parentLimitation="true"
-                :aspectRatio="true"
                 :stickSize="10"
                 :data-label="table.label"
                 :style="{backgroundColor: colors[index]}"
