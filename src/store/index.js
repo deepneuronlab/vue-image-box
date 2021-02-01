@@ -1,6 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import VuexPersist from 'vuex-persist';
+import ApiImagesService from "@/services/images-service"
+import ApiLabelsService from "@/services/labels-service"
 
 const vuexLocalStorage = new VuexPersist({
   key: 'imagebox',
@@ -61,6 +63,22 @@ const store = new Vuex.Store({
   },
 
   actions: {
+    async getCovers({ dispatch }, { imageId }) {
+      try {
+        const covers = await ApiImagesService.fetchCovers(imageId)
+        dispatch('addBoxCover', { id: imageId, covers })
+      } catch (e) {
+        console.log(e)
+      }
+    },
+    async getLabels({ dispatch }) {
+      try {
+        const response = await ApiLabelsService.fetchLabels()
+        dispatch('addLabels', response.labels)
+      } catch (e) {
+        console.log(e)
+      }
+    },
     addBoxCover({ commit }, item) {
       commit('ADD_BOX_COVER', item)
     },

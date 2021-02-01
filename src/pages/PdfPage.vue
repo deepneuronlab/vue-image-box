@@ -60,16 +60,12 @@ export default {
         }
     },
     created() {
-        this.getData() 
-        if(!this.labels.length){
-            fetch(`data/labels.json`).then(res => res.json()).then(data=>{
-                this.$store.dispatch('addLabels', data.labels)
-            }).catch(e=>console.log(e))
-        } 
+        this.getLabels()
+        this.getCovers() 
     },
     watch: {
 		PageId() {
-            this.getData()
+            this.getCovers()
         },
         labelValue(value) {
             if(value === 'costum'){
@@ -108,28 +104,13 @@ export default {
             }
             this.$store.dispatch('modifyBoxCover', {id: this.PageId, cover:{key, ...coords}})
         },
-        getData() {
+        getCovers() {
             if (this.existingImage) return
-            fetch(`data/${this.PageId}.xml`).then(res => res.text())
-            .then(xml => {
-                var parseString = require('xml2js').parseString;
-                let covers = null
-                parseString(xml, (err, result) => {
-                    covers = result.annotation.object.map((i, index) => {
-                        return {
-                            'key': `${i.name[0]}${-index}`,
-                            'label': i.name[0],
-                            'w': Math.ceil((i.bndbox[0].xmax[0] - i.bndbox[0].xmin[0]) / 3.78),
-                            'h': Math.ceil((i.bndbox[0].ymax[0] - i.bndbox[0].ymin[0]) / 3.78),
-                            'x': Math.ceil(i.bndbox[0].xmin[0] / 3.78),
-                            'y': Math.ceil(i.bndbox[0].ymin[0] / 3.78),
-                        }
-                    })
-                })
-                return covers
-            }).then((covers)=>{
-                this.$store.dispatch('addBoxCover', {id: this.PageId, covers})
-            }).catch(e=> console.log(e))
+            this.$store.dispatch('getCovers', {imageId: this.PageId})
+        },
+        getLabels() {
+            if (this.labels.length) return
+            this.$store.dispatch('getLabels')
         },
         closeModal() {
             this.createLabelModalVisible = false
