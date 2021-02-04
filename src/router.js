@@ -1,27 +1,27 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-// ROUTES 
-import PdfPage from '@/pages/PdfPage'
+// ROUTE
+import PageViewer from '@/pages/PageViewer'
+import Home from '@/pages/Home'
 
 Vue.use(VueRouter)
 
-let router = new VueRouter({
+const router = new VueRouter({
     // mode: 'history',
     routes: [
-        {   
-            meta: {title: 'PDF page'},
-            path: '/pdf-page/:PageId',
-            name: 'PdfPage',
+        {
+            path: '/',
+            name: 'Home',
+            component: Home
+        },
+        {
+            meta: {title: 'PDF viewer'},
+            path: '/page-viewer',
+            name: 'PageViewer',
             props: true,
-            component: PdfPage
+            component: PageViewer
         },
     ]
-})
-
-router.beforeEach((to, from, next) => {
-  document.title = to.params.PageId,
-  next()
 })
 
 export default router
