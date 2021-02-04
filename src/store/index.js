@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    pageLinks: [ { link: '' } ],
+    pageLinks: [],
   },
   mutations: {
     SET_PAGE_LINKS(state, pageLinks) {
