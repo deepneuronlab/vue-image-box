@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // ROUTE
 import PageViewer from '@/pages/PageViewer'
-import Home from '@/pages/Home'
+import Home from '@/pages/home'
 
 Vue.use(VueRouter)
 
