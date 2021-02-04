@@ -1,19 +1,21 @@
 <template>
   <div
     class="page-preview"
-    v-if="pageLink && 'coords' in pageLink && pageLink.coords.length"
+    v-if="page && 'coords' in page && page.coords.length"
   >
-    <template v-for="coord in pageLink.coords">
+    <template v-for="coord in page.coords">
       <VueDragResize
         v-if="isLoaded"
         :key="coord.key"
+        :z="coord.key"
+        :parentLimitation="true"
         :w="coord.w"
         :h="coord.h"
         :x="coord.x"
         :y="coord.y"
         contentClass="page-preview__overlay"
-        v-on:resizestop="resize(coord, ...arguments)"
-        v-on:dragstop="resize(coord, ...arguments)"
+        v-on:dragstop="resize(coord.key, ...arguments)"
+        v-on:resizestop="resize(coord.key, ...arguments)"
       >
         <div class="page-preview__label" @click="clickedLabel(coord.key)">
           {{ coord.label || "Add a Label" }}
@@ -34,12 +36,18 @@
     >
       <form @submit.prevent="saveLabel">
         <div class="form-group">
+          <RadioGroup
+            id="labelText"
+            v-model="radioText"
+            :options="options"
+          />
+
           <input
+            v-if="radioText === 'Other'"
             ref="label"
             class="form-control"
             type="text"
             v-model="labelText"
-            placeholder="Label 1"
           />
         </div>
         <button class="btn full-width" type="submit">Submit</button>
@@ -50,17 +58,38 @@
 <script>
 import Modal from "../Modal";
 import VueDragResize from "vue-drag-resize";
+import RadioGroup from "../RadioGroup";
 export default {
   data() {
     return {
       labelText: null,
+      radioText: null,
       isLoaded: false,
       labelModalVisibility: false,
       selectedCoordIndex: null,
+      options: [
+        {
+          value: "Option 1",
+          text: "Option 1",
+        },
+        {
+          value: "Option 2",
+          text: "Option 2",
+        },
+        {
+          value: "Option 3",
+          text: "Option 3",
+        },
+        {
+          value: "Other",
+          text: "Other",
+        }
+      ]
     };
   },
   components: {
     Modal,
+    RadioGroup,
     VueDragResize,
   },
   watch: {
@@ -76,11 +105,8 @@ export default {
     page: { type: Object, required: true },
   },
   computed: {
-    pageLink() {
-      return this.$store.getters.link(this.page.id);
-    },
     imageUrl() {
-      return `http://localhost:8080/images/${this.page.link}`;
+      return `/images/${this.page.link}`;
     },
     getLabel() {
       return this.labelText ? "Edit label" : "Add Label";
@@ -89,7 +115,7 @@ export default {
   methods: {
     clickedLabel(coordKey) {
       this.labelModalVisibility = true;
-      this.labelText = this.pageLink.coords.find(
+      this.labelText = this.page.coords.find(
         (el) => el.key === coordKey
       ).label;
       this.selectedCoordIndex = coordKey;
@@ -99,25 +125,32 @@ export default {
         this.isLoaded = true;
       });
     },
-    resize(coord, newRect) {
-      let coords = [...this.page.coords];
-      coords[coord.key].w = newRect.width;
-      coords[coord.key].h = newRect.height;
-      coords[coord.key].y = newRect.top;
-      coords[coord.key].x = newRect.left;
-      this.$emit("resize", coords, this.page.id);
+    resize(key, newRect) {
+      const coords = [...this.page.coords];
+      coords[key] = {
+        key,
+        w: newRect.width,
+        h: newRect.height,
+        y: newRect.top,
+        x: newRect.left,
+      }
+      this.$emit("resize", coords);
     },
     saveLabel() {
-      let coords = [...this.page.coords];
-      coords[this.selectedCoordIndex].label = this.labelText;
+      const coords = [...this.page.coords];
+      coords[this.selectedCoordIndex].label =
+        this.radioText === 'Other'
+          ? this.labelText
+          : this.radioText;
       this.labelModalVisibility = false;
-      this.$emit("resize", coords, this.page.id);
+      this.$emit("resize", coords);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .page-preview {
+  margin: 50px auto;
   position: relative;
 
   &__overlay {
