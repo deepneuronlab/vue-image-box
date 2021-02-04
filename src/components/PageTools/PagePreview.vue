@@ -6,12 +6,13 @@
     <template v-for="coord in page.coords">
       <VueDragResize
         v-if="isLoaded"
-        :key="coord.key"
-        :z="coord.key"
+        :key="coord.key + page.link"
         :parentLimitation="true"
+        :isActive="false"
         :w="coord.w"
         :h="coord.h"
         :x="coord.x"
+        :parentH="$refs.preview && $refs.preview.height"
         :y="coord.y"
         contentClass="page-preview__overlay"
         v-on:dragstop="resize(coord.key, ...arguments)"
@@ -24,11 +25,13 @@
     </template>
     <img
       v-if="Boolean(page.link)"
+      ref="preview"
       class="page-preview__container"
       @load="onImgLoad"
       :src="imageUrl"
       :alt="page.link"
     />
+
     <Modal
       :title="getLabel"
       v-if="labelModalVisibility"
@@ -39,6 +42,7 @@
           <RadioGroup
             id="labelText"
             v-model="radioText"
+            label='Select new label'
             :options="options"
           />
 
@@ -59,6 +63,7 @@
 import Modal from "../Modal";
 import VueDragResize from "vue-drag-resize";
 import RadioGroup from "../RadioGroup";
+
 export default {
   data() {
     return {
@@ -91,15 +96,6 @@ export default {
     Modal,
     RadioGroup,
     VueDragResize,
-  },
-  watch: {
-    labelModalVisibility(newVal) {
-      if (newVal) {
-        this.$nextTick(function() {
-          this.$refs.label.focus();
-        });
-      }
-    },
   },
   props: {
     page: { type: Object, required: true },
@@ -151,6 +147,7 @@ export default {
 <style lang="scss" scoped>
 .page-preview {
   margin: 50px auto;
+  width: 100%;
   position: relative;
 
   &__overlay {

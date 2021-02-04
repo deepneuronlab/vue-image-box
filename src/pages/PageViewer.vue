@@ -91,6 +91,7 @@ export default {
   flex-direction: row;
 
   &.page-viewer {
+    height: 100%;
     .page-viewer {
       &__links {
         padding: 10px;
@@ -105,8 +106,8 @@ export default {
       }
       &__preview {
         margin-left: 200px;
-        height: 100vh;
         overflow: auto;
+        height: 100%;
         width: 100%;
       }
       &__empty {
