@@ -1,10 +1,13 @@
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //     .BundleAnalyzerPlugin;
 
+const configureAPI = require('./server')
+
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/'
-        : '/',
+    publicPath: '/',
+    devServer: {
+        before: configureAPI
+        }
     // configureWebpack: {
     //     plugins: [new BundleAnalyzerPlugin()]
     // }
