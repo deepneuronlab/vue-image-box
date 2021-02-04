@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 const jsonParser = bodyParser.json({ limit: "1mb" });
 const parser = new xml2js.Parser();
 
-module.exports.SERVER_SETUP = (app) => {
+module.exports = (app) => {
   app.use((req, res, next) => {
     res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
     res.header("Expires", "-1");
@@ -30,20 +30,14 @@ module.exports.SERVER_SETUP = (app) => {
 
     const files = fs
       .readdirSync(dataFolder)
-      .filter((file) => {
-        return file.endsWith(".xml") ? file : false;
-      })
-      .map((file) => {
-        return {
-          id: uuidv4(),
-          link: file.split(".xml")[0],
-          coords: [],
-        };
-      });
+      .filter((file) => file.endsWith(".xml") ? file : false)
+      .map(file => ({
+        id: uuidv4(),
+        link: file.split(".xml")[0],
+        coords: []
+      }))
     res.send({
-      data: {
-        links: files,
-      },
+      links: files,
       error: null,
     });
   });
@@ -74,9 +68,7 @@ module.exports.SERVER_SETUP = (app) => {
           });
 
           res.send({
-            data: {
-              coords: coords,
-            },
+            coords,
             error: null,
           });
         });
