@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
 		<router-view class="container"/>
-		<br><br><br><br>
+		<portal-target name="modals" />
 	</div>
 </template>
 <script>

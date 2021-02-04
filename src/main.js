@@ -5,7 +5,9 @@ import router from './router'
 import VueDragResize from 'vue-drag-resize'
 import titleMixin from './mixins/titleMixin'
 import store from './store'
+import PortalVue from 'portal-vue'
 
+Vue.use(PortalVue)
 Vue.mixin(titleMixin)
 Vue.component('vue-drag-resize', VueDragResize)
 

@@ -1,11 +1,13 @@
 <template>
-  <div class="modal-container">
-    <div class="modal-overlay" @click="hideModal"></div>
-    <div class="modal-body">
-      <h2 class="modal-body__title">{{ title }}</h2>
-      <slot></slot>
+  <portal to='modals'>
+    <div class="modal-container">
+      <div class="modal-overlay" @click="hideModal"></div>
+      <div class="modal-body">
+        <h2 class="modal-body__title">{{ title }}</h2>
+        <slot></slot>
+      </div>
     </div>
-  </div>
+  </portal>
 </template>
 <script>
 export default {
@@ -28,6 +30,7 @@ export default {
   position: fixed;
   left: 0;
   right: 0;
+  z-index: 999;
   bottom: 0;
   top: 0;
   margin: auto;
