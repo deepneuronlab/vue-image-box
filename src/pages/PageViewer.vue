@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid page-viewer">
     <div class="page-viewer__links">
-      <template v-for="link in pageLinks">
+      <template v-for="link in links">
         <PageLink
           :isActive="activePage.id === link.id"
           :page="link"
@@ -25,55 +25,52 @@
 <script>
 import PageLink from "@/components/PageTools/PageLink";
 import PagePreview from "@/components/PageTools/PagePreview";
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
+  title: `Page Viewer` ,
+  name: 'PageViewer',
   components: {
     PageLink,
     PagePreview,
   },
   data() {
     return {
-      pageLinks: [],
       activePage: {},
     };
   },
-  watch: {
-    "$route.query.preview"(newVal) {
-      const pageByRoute = this.pageLinks.find((page) => page.link === newVal);
-      if (pageByRoute) {
-        this.activePage = pageByRoute;
-        this.pageClicked(this.activePage);
-      } else {
-        this.activePage = {};
-      }
-    },
+  computed: {
+    ...mapGetters([
+      'links',
+      'link'
+    ])
   },
-  created() {
-    this.$store.dispatch("getDocs").then(this.pageInit);
-  },
-  beforeRouteUpdate(to, from, next) {
-    (document.title = `Page Viewer | ${to.query.preview}`), next();
+  async created() {
+    await this.$store.dispatch("getPages");
+    this.pageInit();
   },
   methods: {
-    pageInit(pages) {
-      this.pageLinks = pages;
-      const pageByRoute = pages.find(
-        (page) => page.link === this.$route.query.preview
-      );
+    ...mapActions([
+      'getPages',
+      'updateCoords',
+      'postPage'
+    ]),
+    pageInit() {
+      const { preview } = this.$route.query
+      const pageByRoute = this.link(preview);
       if (pageByRoute) {
-        this.activePage = pageByRoute;
-        this.pageClicked(this.activePage);
+        document.title = `Page Viewer | ${preview}`
+        this.pageClicked(pageByRoute);
       }
     },
-    updateCoordsToStore(coords, pageId) {
-      this.$store.dispatch("updateCoords", {
-        pageId: pageId,
-        coords: coords,
-      });
+    updateCoordsToStore(coords) {
+      this.$store.dispatch("updateCoords", { link: this.activePage.link , coords });
     },
     updateUrl(link) {
       if (this.$route.query.preview !== link.link) {
+        document.title = `Page Viewer | ${link.link}`
         this.$router.push({
-          name: "pageViewer",
+          name: "PageViewer",
           query: { preview: link.link },
         });
       }
@@ -82,14 +79,7 @@ export default {
       this.activePage = link;
       this.updateUrl(link);
       if (!this.activePage.coords.length) {
-        this.$http
-          .post(`/page`, {
-            page: `${link.link}`,
-          })
-          .then((res) => {
-            this.activePage.coords = res.data.coords;
-            this.updateCoordsToStore(this.activePage.id, res.data.coords);
-          });
+        this.$store.dispatch('postPage', this.activePage.link);
       }
     },
   },
