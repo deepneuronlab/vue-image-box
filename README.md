@@ -20,6 +20,6 @@ $ npm run serve
 ```
 
 
-### Production
+### Master Branch Deployment
 https://vue-image-box.vercel.app/#/
 

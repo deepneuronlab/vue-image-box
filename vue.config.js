@@ -2,10 +2,14 @@
 //     .BundleAnalyzerPlugin;
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/'
-        : '/',
     // configureWebpack: {
     //     plugins: [new BundleAnalyzerPlugin()]
     // }
+    publicPath: process.env.NODE_ENV === 'production'
+        ? '/'
+        : '/',
+
+    transpileDependencies: [
+      'vuetify'
+    ]
 }
